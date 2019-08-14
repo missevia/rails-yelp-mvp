@@ -15,6 +15,12 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
   end
 
+  def update
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.update(restaurant_params)
+    redirect_to restaurant_path(@restaurant)
+  end
+
   def create
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
@@ -22,6 +28,9 @@ class RestaurantsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
   end
 
   private

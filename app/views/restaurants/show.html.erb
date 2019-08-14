@@ -1,8 +1,27 @@
 <h1>Details of the restaurant</h1>
 
 <ul>
-  <li> <%= @restaurant.name %> </li>
+  <li> <%= @restaurant.name %></li>
   <li> <%= @restaurant.address %> </li>
   <li> <%= @restaurant.category %> </li>
   <li> <%= @restaurant.phone_number %> </li>
 </ul>
+
+<hr>
+<ul>
+<li> <%= link_to "Edit a restaurant", edit_restaurant_path %></li>
+<li> <%= link_to "Add a review", new_restaurant_review_path(@restaurant) %></li>
+<li> <%= link_to "Go back to restaurant list", restaurants_path %> </li>
+</ul>
+
+<hr>
+
+<h3>Reviews</h3>
+
+<% @restaurant.reviews.each do |review| %>
+  <li><%= review.content %> <%= link_to review_path(review), method: :delete, data: { confirm: "Delete this review?"} do  %>
+    <p>delete</p>
+    <% end %>
+  </li>
+<% end %>
+
